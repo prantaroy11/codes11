@@ -1,0 +1,70 @@
+package com.example.calculatorapplication;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.EditText;
+import android.view.View;
+import android.os.Bundle;
+
+public class MainActivity extends AppCompatActivity {
+    private EditText number1;
+    private EditText number2;
+    private TextView resultView;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        number1 = findViewById(R.id.editTextNumber);
+        number2 = findViewById(R.id.editTextNumber2);
+        resultView = findViewById(R.id.textView2);
+        Button addButton = findViewById(R.id.button);
+        Button subButton = findViewById(R.id.button2);
+        Button mulButton = findViewById(R.id.button3);
+        Button divButton = findViewById(R.id.button4);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String n1 = number1.getText().toString();
+                String n2 = number2.getText().toString();
+                Double num1 = Double.parseDouble(n1);
+                Double num2 = Double.parseDouble(n2);
+                Double add = num1+num2;
+                resultView.setText(add.toString());
+            }
+        });
+        subButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String n1 = number1.getText().toString();
+                String n2 = number2.getText().toString();
+                Double num1 = Double.parseDouble(n1);
+                Double num2 = Double.parseDouble(n2);
+                Double sub = num1-num2;
+                resultView.setText(sub.toString());
+            }
+        });
+        mulButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String n1 = number1.getText().toString();
+                String n2 = number2.getText().toString();
+                Double num1 = Double.parseDouble(n1);
+                Double num2 = Double.parseDouble(n2);
+                Double mul = num1*num2;
+                resultView.setText(mul.toString());
+            }
+        });
+        divButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String n1 = number1.getText().toString();
+                String n2 = number2.getText().toString();
+                Double num1 = Double.parseDouble(n1);
+                Double num2 = Double.parseDouble(n2);
+                Double div = num1/num2;
+                resultView.setText(div.toString());
+            }
+        });
+    }
+}
