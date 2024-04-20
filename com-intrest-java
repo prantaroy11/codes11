@@ -1,0 +1,48 @@
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    EditText principalEditText, interestRateEditText, periodEditText;
+    TextView compoundInterestResultTextView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        principalEditText = findViewById(R.id.principalEditText);
+        interestRateEditText = findViewById(R.id.interestRateEditText);
+        periodEditText = findViewById(R.id.periodEditText);
+        compoundInterestResultTextView = findViewById(R.id.compoundInterestResultTextView);
+    }
+
+    public void calculateCompoundInterest(View view) {
+        String principalStr = principalEditText.getText().toString();
+        String interestRateStr = interestRateEditText.getText().toString();
+        String periodStr = periodEditText.getText().toString();
+
+        if (!principalStr.isEmpty() && !interestRateStr.isEmpty() && !periodStr.isEmpty()) {
+            double principal = Double.parseDouble(principalStr);
+            double interestRate = Double.parseDouble(interestRateStr);
+            double period = Double.parseDouble(periodStr);
+
+            double compoundInterest = calculateCompoundInterestValue(principal, interestRate, period);
+            displayCompoundInterestResult(compoundInterest);
+        } else {
+            compoundInterestResultTextView.setText("Please enter all fields.");
+        }
+    }
+
+    private double calculateCompoundInterestValue(double principal, double interestRate, double period) {
+        double compoundInterest = principal * Math.pow((1 + (interestRate / 100)), period) - principal;
+        return compoundInterest;
+    }
+
+    private void displayCompoundInterestResult(double compoundInterest) {
+        compoundInterestResultTextView.setText(String.format("Compound Interest: %.2f", compoundInterest));
+    }
+}
